@@ -1,0 +1,11 @@
+COMO PUBLICAR (grátis) — GitHub Pages
+1. Crie conta em github.com e um repositório público novo (ex.: mpse).
+2. Envie TODO o conteúdo desta pasta (index.html, manifest.webmanifest, sw.js e a pasta icons) para a raiz do repositório.
+3. Settings > Pages > Source: "Deploy from a branch" > branch main, pasta /(root) > Save.
+4. Em 1 a 2 minutos o endereço será https://SEU-USUARIO.github.io/mpse/
+5. No Chrome do Android, abra o endereço, toque no menu (⋮) > "Instalar app". No iPhone: Safari > Compartilhar > "Adicionar à Tela de Início".
+
+ALTERNATIVA MAIS RÁPIDA: Netlify Drop (app.netlify.com/drop) — arraste a pasta e ele gera o link.
+
+Obs.: o progresso fica salvo no aparelho/navegador. Use "Exportar progresso" no Painel para backup e "Importar progresso" para restaurar ou trocar de aparelho.
+Para atualizar o app depois, mude "mpse-v1" para "mpse-v2" em sw.js ao subir uma nova versão.

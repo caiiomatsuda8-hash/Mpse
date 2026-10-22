@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-BR"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0f6e56"><link rel="manifest" href="manifest.webmanifest"><link rel="apple-touch-icon" href="icons/icon-192.png"><meta name="apple-mobile-web-app-capable" content="yes"><title>Plataforma de Estudos MPSE</title>
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);--bg:#f6f5f1;--card:#fff;--tx:#1d1d1b;--mu:#6b6a65;--ac:#0f6e56;--ac2:#e1f5ee;--bd:#e2e0d8}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#17171a;--card:#212125;--tx:#ececea;--mu:#9a9992;--ac:#5dcaa5;--ac2:#10332a;--bd:#33333a;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#17171a;--card:#212125;--tx:#ececea;--mu:#9a9992;--ac:#5dcaa5;--ac2:#10332a;--bd:#33333a;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--tx);font:15px/1.45 system-ui,-apple-system,Segoe UI,sans-serif}
+main{max-width:760px;margin:0 auto;padding:12px}
+h1{font-size:20px;margin:6px 0}h2{font-size:16px;margin:0}
+.nav{display:flex;gap:6px;margin:10px 0;overflow-x:auto}
+.nav button{flex:1;padding:9px;border:1px solid var(--bd);background:var(--card);color:var(--tx);border-radius:10px;font:inherit;white-space:nowrap}
+.nav button.on{background:var(--ac);color:#fff;border-color:var(--ac)}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:12px;margin:10px 0}
+.bar{height:8px;background:var(--ac2);border-radius:6px;overflow:hidden;margin:6px 0}.bar i{display:block;height:100%;background:var(--ac);transition:width .3s}
+.big{font-size:34px;font-weight:700;color:var(--ac)}.mu{color:var(--mu);font-size:13px}
+.row{display:flex;justify-content:space-between;gap:8px;align-items:center}
+details{background:var(--card);border:1px solid var(--bd);border-radius:12px;margin:8px 0}
+summary{padding:12px;cursor:pointer;list-style:none}summary::-webkit-details-marker{display:none}
+.tp{padding:10px 12px;border-top:1px solid var(--bd)}
+.tp b{display:block;margin-bottom:6px}
+.ck{display:flex;flex-wrap:wrap;gap:6px}
+.ck label{display:flex;align-items:center;gap:5px;padding:5px 9px;border:1px solid var(--bd);border-radius:20px;font-size:13px}
+.ck input{accent-color:var(--ac)}
+.lk{margin-top:6px;font-size:12px}.lk a{color:var(--ac);margin-right:10px}
+a{color:var(--ac)}input[type=number]{width:64px;padding:6px;border:1px solid var(--bd);border-radius:8px;background:var(--bg);color:var(--tx);font:inherit}
+.sec{display:none}.sec.on{display:block}
+button.s{padding:8px 12px;border:1px solid var(--bd);background:var(--card);color:var(--tx);border-radius:8px;font:inherit}
+</style></head><body><main>
+<h1>Plataforma de Estudos — MPSE</h1>
+<div class="mu">Promotor de Justiça Substituto · Edital 1/2022 (XXI Concurso), Anexo I · Cebraspe</div>
+<div class="nav"><button data-t="p" class="on">Painel</button><button data-t="c">Cronograma</button><button data-t="s">Simulados</button><button data-t="f">Fontes</button></div>
+<section id="p" class="sec on"></section><section id="c" class="sec"></section><section id="s" class="sec"></section><section id="f" class="sec"></section>
+</main>
+<script>
+const D={CF:"Pedro Lenza; Gilmar Mendes e Gonet Branco; José Afonso da Silva; Novelino; Dirley da Cunha Jr.",MP:"Mazzilli (Regime Jurídico e Introdução ao MP); Emerson Garcia; Lei 8.625/93 e LC Estadual 02/90 comentadas",CIV:"Farias e Rosenvald; Tartuce; Carlos Roberto Gonçalves; Gagliano e Pamplona; Maria Berenice Dias (família); Ulhoa Coelho vol. 3 (falência)",ADM:"Rafael Carvalho Rezende Oliveira; Matheus Carvalho; Di Pietro; Carvalho Filho",PC:"Daniel Amorim Assumpção Neves; Didier vol. 1; Marcus Vinicius Rios Gonçalves; Humberto Theodoro Jr.",PEN:"Cleber Masson; Rogério Sanches Cunha; Bitencourt; Greco",PP:"Renato Brasileiro; Távora e Alencar; Norberto Avena; Aury Lopes Jr.",ELE:"José Jairo Gomes; Roberto Moreira de Almeida; Marcos Ramayana",COL:"Mazzilli (Interesses Difusos); Didier e Zaneti (Proc. Coletivo); Cláudia Lima Marques (consumidor); Milaré (ambiental); Curso de Dir. da Criança e do Adolescente (Maciel)",DH:"Mazzuoli; André de Carvalho Ramos; Flávia Piovesan"};
+const N={CF:"Constitucional",MP:"Leg. Institucional do MP",CIV:"Civil",ADM:"Administrativo",PC:"Processual Civil",PEN:"Penal",PP:"Processual Penal",ELE:"Eleitoral",COL:"Tutela Coletiva",DH:"Direitos Humanos"};
+const R="Revisão integrada + bateria de questões reais (Cebraspe/MP)";
+const T=[
+["Ano 1 · T1 — Teoria da Constituição e Direitos Fundamentais",["CF"],["Constitucionalismo, ciclos constitucionais, constitucionalismo brasileiro","Poder Constituinte, recepção, repristinação, desconstitucionalização, mutação","Conceito, concepções e classificação de Constituição","Hermenêutica constitucional","Princípios Fundamentais da República","Direitos e Garantias Fundamentais (individuais, coletivos, sociais, nacionalidade, políticos, writs)"]],
+["Ano 1 · T2 — Controle de Constitucionalidade e Organização do Estado",["CF"],["Controle de constitucionalidade: difuso, concentrado, ADI, ADC, ADPF, súmula vinculante","Controle de convencionalidade e sistema interamericano","Organização do Estado: federação, competências, intervenção","Organização dos Poderes: Legislativo, processo legislativo, Judiciário, CNJ"]],
+["Ano 1 · T3 — Funções Essenciais à Justiça e Ordem Econômica",["CF"],["Ministério Público na CF: regime, princípios, autonomia, garantias, vedações, funções, CNMP","Advocacia Pública, Advocacia, Defensoria Pública","Defesa do Estado e das Instituições Democráticas","Sistema Constitucional Tributário e finanças públicas","Ordem Econômica e Ordem Social","Constituição do Estado de Sergipe (Títulos I a III)"]],
+["Ano 1 · T4 — Legislação Institucional do MP",["MP"],["Direitos, prerrogativas e garantias do cargo","Disciplina: deveres, vedações, impedimentos e suspeições","Instrumentos de investigação e atuação extrajudicial; TAC","CNMP e Corregedorias","Feitos extrajudiciais: inquérito civil, PIC, notícia de fato (Res. CNMP 23/2007; Res. CPJ/SE 08/2015)","Lei 8.625/93, LC 75/93 (subsidiária) e LC Estadual 02/90",R]],
+["Ano 2 · T1 — Civil: Parte Geral",["CIV"],["LINDB","Pessoas naturais: personalidade, capacidade, direitos da personalidade, ausência","Pessoas jurídicas e desconsideração","Domicílio e Bens","Negócio jurídico: defeitos, nulidades, representação, condição, termo, encargo","Prescrição, decadência, forma e prova"]],
+["Ano 2 · T2 — Obrigações, Responsabilidade Civil e Contratos",["CIV"],["Obrigações: modalidades, adimplemento, extinção, inadimplemento, cláusula penal, arras","Responsabilidade civil: culpa, dano, nexo, excludentes, objetiva","Contratos em geral e espécies contratuais; vícios redibitórios e evicção"]],
+["Ano 2 · T3 — Direitos Reais",["CIV"],["Posse: classificação, aquisição, efeitos, perda","Propriedade: função social, aquisição, usucapião (todas as espécies)","Perda, restrições, vizinhança, condomínio, propriedade resolúvel e fiduciária","Direitos reais sobre coisa alheia (superfície, servidões, usufruto, penhor, hipoteca etc.)","Incorporação, parcelamento, regularização fundiária, Estatuto da Cidade"]],
+["Ano 2 · T4 — Família, Sucessões e Registros Públicos",["CIV"],["Família: casamento, regimes de bens, união estável, filiação, adoção, poder familiar, guarda, tutela, curatela","Sucessões: legítima, testamentária, legados, deserdação, inventário e partilha","Registros Públicos: imóveis e civil de pessoas naturais","Falência e Recuperação Judicial (noções civis)",R]],
+["Ano 3 · T1 — Administrativo (parte 1)",["ADM"],["Administração Pública: descentralização e desconcentração","Atividade administrativa: polícia, serviços públicos, intervenção, fomento","Regime jurídico administrativo e princípios","Poderes, agentes públicos, ato e processo administrativo"]],
+["Ano 3 · T2 — Administrativo (parte 2)",["ADM"],["Licitações e contratos; convênios e consórcios","Concessão, permissão, PPPs","Bens públicos; intervenção na propriedade; liberdade econômica","Responsabilidade civil do Estado; controle da Administração","Improbidade administrativa; responsabilidade fiscal","Terceiro setor, LGPD, acesso à informação, solução alternativa de conflitos"]],
+["Ano 3 · T3 — Processual Civil (Teoria Geral)",["PC"],["Normas processuais, jurisdição, competência","Sujeitos: partes, procuradores, capacidade, despesas, honorários, gratuidade","Litisconsórcio e intervenção de terceiros","Juiz, MP, Advocacia Pública e Defensoria no processo","Conciliação, mediação, negociação"]],
+["Ano 3 · T4 — Processual Civil (Ação e Processo)",["PC"],["Ação, defesa, exceções e objeções","Atos processuais, prazos, preclusões, comunicação","Pressupostos processuais e invalidades","Tutela provisória e definitiva","Procedimento comum, procedimentos especiais, jurisdição voluntária"]],
+["Ano 4 · T1 — Processual Civil (Provas, Sentença e Execução)",["PC"],["Petição inicial, contestação, reconvenção, revelia, saneamento","Audiência de instrução, provas, provas ilícitas","Sentença e coisa julgada; cumprimento de sentença","Execução: espécies, alimentos, contra a Fazenda","Impugnação e embargos à execução"]],
+["Ano 4 · T2 — Recursos, Ações Constitucionais e Penal (Parte Geral)",["PC","PEN"],["Recursos: apelação, agravos, embargos, RE, REsp, repercussão geral, IRDR, IAC","Usucapião, MS, MI, habeas data, ação popular, reclamação","Penal Parte Geral: escolas, teoria do crime, concurso de pessoas, pena, prescrição"]],
+["Ano 4 · T3 — Penal (Parte Especial e Leis Especiais)",["PEN"],["Parte Especial: pessoa, patrimônio, dignidade sexual, incolumidade, paz, fé e administração públicas","Leis especiais: economia popular, prefeitos, eleitorais, consumidor, tributária, hediondos, tortura, drogas, organização criminosa, lavagem, ambientais, ECA, idoso, PcD, abuso de autoridade, violência doméstica"]],
+["Ano 4 · T4 — Processual Penal",["PP"],["Princípios, inquérito policial, ação penal, ANPP, juiz de garantias","Jurisdição, competência, prova, prisões e cautelares, audiência de custódia","Procedimentos comuns, júri e especiais","Nulidades, recursos, revisão criminal, habeas corpus","Execução penal (noções); legislação processual especial (drogas, Maria da Penha, interceptação, organizações criminosas)"]],
+["Ano 5 · T1 — Direito Eleitoral",["ELE"],["Direitos políticos, fontes, princípios, sufrágio, sistemas eleitorais","Justiça Eleitoral e MP Eleitoral","Alistamento, elegibilidade, registro de candidatura, inelegibilidades","Partidos políticos, federações, fidelidade, financiamento","Campanha, propaganda e garantias eleitorais","Ações eleitorais (AIJE, AIRC), crimes eleitorais e processo penal eleitoral"]],
+["Ano 5 · T2 — Tutela dos Direitos Difusos, Coletivos e Individuais Homogêneos",["COL"],["Teoria geral da tutela coletiva; ACP; inquérito civil; TAC","Meio ambiente e urbanismo (Cidade, Código Florestal, PNMA, PNRS, licenciamento, SNUC)","Patrimônio público (TCE, MS coletivo, ação popular, improbidade)","Idoso, PcD, saúde, assistência social, educação, LGBTQIA+","Consumidor: política nacional, direitos básicos, práticas comerciais, defesa em juízo","ECA: princípios, proteção, ato infracional, socioeducação, Conselho Tutelar"]],
+["Ano 5 · T3 — Direitos Humanos",["DH"],["Conceito, evolução e dimensões","Sistema Internacional (ONU, ODS) e Interamericano","Tratados incorporados ao ordenamento brasileiro","SUS, SUAS, SISAN; racismo estrutural, igualdade racial, ações afirmativas","Povos tradicionais, situação de rua, LGBTQIA+, população carcerária","Atuação do MP em Direitos Humanos (resoluções e recomendações do CNMP)"]],
+["Ano 5 · T4 — Revisão Geral e Simulados",["CF","MP","CIV","ADM","PC","PEN","PP","ELE","COL","DH"],["Revisão cruzada das 10 disciplinas (pontos de maior incidência)","Treino de discursivas P2/P3 (teoria + peça) com padrões de resposta oficiais","Informativos STF/STJ do último ano (CF, Civil, Penal, Administrativo)","Preparação para prova oral e tribuna: fichamento por disciplina"]]];
+const K=["Aula","Material","Resumo","Questões"];
+const SIM=[["Diagnóstico — prova anterior do MPSE (Cebraspe)","Antes de começar"],["Simulado 1 — prova real MP (Cebraspe)","Fim do Ano 1"],["Simulado 2 — prova real MP (Cebraspe)","Fim do Ano 2"],["Simulado 3 — prova real MP (Cebraspe)","Fim do Ano 3"],["Simulado 4 — prova real MP (Cebraspe)","Fim do Ano 4"],["Simulado 5 — P1 real, 100 itens, 5h cronometrado","Ano 5 · mês 1"],["Simulado 6 — P1 real, cronometrado","Ano 5 · mês 2"],["Simulado 7 — P1 real, cronometrado","Ano 5 · mês 3"],["Simulado 8 — P1 real, cronometrado","Ano 5 · mês 4"],["Simulado 9 — P1 real, cronometrado","Ano 5 · mês 5"],["Simulado 10 — P1 real, cronometrado","Ano 5 · mês 6"],["Discursiva real P2 — com padrão de resposta oficial","Ano 5"],["Discursiva real P3 — com padrão de resposta oficial","Ano 5"]];
+let S={};try{S=JSON.parse(localStorage.getItem("mpse")||"{}")}catch(e){}
+const sv=()=>{try{localStorage.setItem("mpse",JSON.stringify(S))}catch(e){}};
+const q=s=>encodeURIComponent(s);
+const g=(t,s)=>`https://www.google.com/search?q=${q(t+" "+s)}`;
+const START=new Date(2026,9,21);
+const fmt=d=>d.toLocaleDateString("pt-BR",{day:"2-digit",month:"short",year:"2-digit"});
+function pct(keys){const d=keys.filter(k=>S[k]).length;return keys.length?Math.round(d/keys.length*100):0}
+const tk=(i)=>{const o=[];T[i][2].forEach((_,j)=>K.forEach((_,k)=>o.push(`t${i}.${j}.${k}`)));return o};
+const all=T.flatMap((_,i)=>tk(i));
+function render(){
+ const tot=pct(all),ts=SIM.map((_,i)=>"s"+i),sp=pct(ts);
+ const done=all.filter(k=>S[k]).length;
+ let h=`<div class="card"><div class="mu">Cumprimento do cronograma</div><div class="big">${tot}%</div><div class="bar"><i style="width:${tot}%"></i></div><div class="mu">${done} de ${all.length} etapas · Simulados reais: ${sp}%</div></div><div class="card"><h2>Por ano</h2>`;
+ for(let y=1;y<=5;y++){const k=T.flatMap((t,i)=>t[0].startsWith("Ano "+y)?tk(i):[]);const p=pct(k);h+=`<div class="row" style="margin-top:8px"><span>Ano ${y}</span><b>${p}%</b></div><div class="bar"><i style="width:${p}%"></i></div>`}
+ h+=`</div><div class="card"><h2>Por disciplina</h2>`;
+ Object.keys(N).forEach(c=>{const k=T.flatMap((t,i)=>t[1].length===1&&t[1][0]===c?tk(i):[]);if(!k.length)return;const p=pct(k);h+=`<div class="row" style="margin-top:8px"><span>${N[c]}</span><b>${p}%</b></div><div class="bar"><i style="width:${p}%"></i></div>`});
+ h+=`<div class="mu">Anos 4-T2 e 5-T4 (mistos) contam só no total.</div></div><div class="row" style="justify-content:flex-start;flex-wrap:wrap"><button class="s" id="ex">Exportar progresso</button><button class="s" id="im">Importar progresso</button><button class="s" id="rs">Zerar progresso</button></div>`;
+ p.innerHTML=h;ex.onclick=()=>{const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([JSON.stringify(S)],{type:"application/json"}));a.download="progresso-mpse.json";a.click()};im.onclick=()=>{const i=document.createElement("input");i.type="file";i.accept=".json";i.onchange=()=>{const r=new FileReader();r.onload=()=>{try{S=JSON.parse(r.result);sv();render();rc();rsim()}catch(e){alert("Arquivo inválido")}};r.readAsText(i.files[0])};i.click()};rs.onclick=()=>{if(confirm("Zerar todo o progresso?")){S={};sv();render();rc();rsim()}};
+}
+function rc(){
+ let h=`<div class="mu">Ritmo-base: ~13h/semana. Cada trimestre = 13 semanas, a partir de 21/10/2026. Marque Aula, Material, Resumo e Questões em cada ponto do edital.</div>`;
+ T.forEach((t,i)=>{
+  const a=new Date(START.getTime()+i*91*864e5),b=new Date(a.getTime()+90*864e5),p=pct(tk(i));
+  h+=`<details><summary><div class="row"><b>${t[0]}</b><b>${p}%</b></div><div class="mu">${fmt(a)} → ${fmt(b)} · ${t[1].map(c=>N[c]).join(" + ")}</div><div class="bar"><i style="width:${p}%"></i></div></summary>`;
+  t[2].forEach((tp,j)=>{
+   h+=`<div class="tp"><b>${tp}</b><div class="ck">`+K.map((n,k)=>`<label><input type="checkbox" data-k="t${i}.${j}.${k}" ${S[`t${i}.${j}.${k}`]?"checked":""}>${n}</label>`).join("")+`</div><div class="lk">Buscar aula: <a target="_blank" rel="noopener" href="${g(tp,"site:estrategiaconcursos.com.br")}">Estratégia</a><a target="_blank" rel="noopener" href="${g(tp,"site:mege.com.br")}">Mege</a><a target="_blank" rel="noopener" href="${g(tp,"site:g7juridico.com.br")}">G7</a><a target="_blank" rel="noopener" href="${g(tp+" Cebraspe Ministério Público questões","")}">Questões</a></div></div>`});
+  h+=`<div class="tp mu"><b>Doutrina indicada</b>${t[1].map(c=>N[c]+": "+D[c]).join("<br>")}</div></details>`});
+ c.innerHTML=h;
+}
+function rsim(){
+ let h=`<div class="card mu">Aqui não há questões digitadas por mim: você usa provas <b>reais e oficiais</b> (caderno + gabarito definitivo) e registra o resultado. Provas anteriores do MPSE e de outros MPs aplicadas pelo Cebraspe ficam no site do Cebraspe, no do MPSE e em bancos de questões como QConcursos e PCI Concursos. Use sempre o gabarito definitivo, não o preliminar.</div><div class="card"><div class="row"><b>Simulados reais</b><b>${pct(SIM.map((_,i)=>"s"+i))}%</b></div>`;
+ SIM.forEach((s,i)=>{h+=`<div class="tp"><label class="ck"><span style="display:flex;gap:6px;align-items:center"><input type="checkbox" data-k="s${i}" ${S["s"+i]?"checked":""}><b>${s[0]}</b></span></label><div class="mu">${s[1]}</div><div style="margin-top:6px">Acertos: <input type="number" min="0" max="100" data-n="n${i}" value="${S["n"+i]??""}"> /100</div></div>`});
+ h+=`</div>`;s.innerHTML=h;
+}
+function rf(){f.innerHTML=`<div class="card"><h2>Onde buscar</h2><p><a target="_blank" rel="noopener" href="https://www.estrategiaconcursos.com.br">Estratégia Concursos</a> · <a target="_blank" rel="noopener" href="https://www.mege.com.br">Mege</a> · <a target="_blank" rel="noopener" href="https://www.g7juridico.com.br">G7 Jurídico</a></p><p><a target="_blank" rel="noopener" href="https://www.cebraspe.org.br">Cebraspe</a> (provas e gabaritos) · <a target="_blank" rel="noopener" href="https://www.mpse.mp.br">MPSE</a> (edital e atualizações) · <a target="_blank" rel="noopener" href="https://www.qconcursos.com">QConcursos</a> · <a target="_blank" rel="noopener" href="https://www.pciconcursos.com.br">PCI Concursos</a></p><p class="mu">Os links de aula no cronograma são buscas direcionadas a cada cursinho: o conteúdo depende da sua assinatura. Confira o edital vigente no site do MPSE; pode sair novo edital antes do fim dos 5 anos.</p></div>`}
+document.addEventListener("change",e=>{const k=e.target.dataset.k,n=e.target.dataset.n;if(k){S[k]=e.target.checked||undefined;sv();render();const o=document.querySelectorAll("details");const op=[...o].map(d=>d.open);rc();document.querySelectorAll("details").forEach((d,i)=>d.open=op[i]);if(k[0]=="s")rsim()}if(n){S[n]=e.target.value;sv()}});
+document.querySelector(".nav").onclick=e=>{const t=e.target.dataset.t;if(!t)return;document.querySelectorAll(".nav button").forEach(b=>b.classList.toggle("on",b===e.target));document.querySelectorAll(".sec").forEach(x=>x.classList.toggle("on",x.id==t))};
+render();rc();rsim();rf();
+if("serviceWorker" in navigator)addEventListener("load",()=>navigator.serviceWorker.register("sw.js").catch(()=>{}));
+</script></body></html>
